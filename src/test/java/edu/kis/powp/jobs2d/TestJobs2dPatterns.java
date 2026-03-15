@@ -7,8 +7,10 @@ import java.util.logging.Logger;
 
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
+import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.adapter.DriverAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
@@ -45,6 +47,10 @@ public class TestJobs2dPatterns {
 		Job2dDriver testDriver = new DriverAdapter();
 		DriverFeature.addDriver("Buggy Simulator", testDriver);
 
+		LineDrawerAdapter lineDriver = new LineDrawerAdapter(LineFactory.getBasicLine());
+		DriverFeature.addDriver("Line Driver", lineDriver);
+		setupLineSettings(application, lineDriver);
+
 		DriverFeature.updateDriverInfo();
 	}
 
@@ -64,6 +70,16 @@ public class TestJobs2dPatterns {
 		application.addComponentMenuElement(Logger.class, "Severe level",
 				(ActionEvent e) -> logger.setLevel(Level.SEVERE));
 		application.addComponentMenuElement(Logger.class, "OFF logging", (ActionEvent e) -> logger.setLevel(Level.OFF));
+	}
+
+	private static void setupLineSettings(Application application, LineDrawerAdapter adapter) {
+		application.addComponentMenu(LineDrawerAdapter.class, "Line Settings", 4);
+		application.addComponentMenuElement(LineDrawerAdapter.class, "Basic Line",
+				(ActionEvent e) -> adapter.setLine(LineFactory.getBasicLine()));
+		application.addComponentMenuElement(LineDrawerAdapter.class, "Dotted Line",
+				(ActionEvent e) -> adapter.setLine(LineFactory.getDottedLine()));
+		application.addComponentMenuElement(LineDrawerAdapter.class, "Cyan Dotted Line",
+				(ActionEvent e) -> adapter.setLine(LineFactory.getSpecialLine()));
 	}
 
 	/**
