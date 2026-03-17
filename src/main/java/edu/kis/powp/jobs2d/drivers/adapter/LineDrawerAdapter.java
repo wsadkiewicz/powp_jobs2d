@@ -3,20 +3,19 @@ package edu.kis.powp.jobs2d.drivers.adapter;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.legacy.drawer.shape.ILine;
 import edu.kis.powp.jobs2d.Job2dDriver;
-import edu.kis.powp.jobs2d.features.DrawerFeature;
 
 public class LineDrawerAdapter implements Job2dDriver {
     private int startX = 0, startY = 0;
     private final DrawPanelController drawPanelController;
     private ILine line;
 
-    public LineDrawerAdapter(ILine type) {
-        this.drawPanelController = DrawerFeature.getDrawerController();
-        this.line = type;
+    public LineDrawerAdapter(DrawPanelController drawPanelController, ILine line) {
+        this.drawPanelController = drawPanelController;
+        this.line = line;
     }
 
-    public void setLine(ILine type) {
-        this.line = type;
+    public void setLine(ILine line) {
+        this.line = line;
     }
 
     @Override

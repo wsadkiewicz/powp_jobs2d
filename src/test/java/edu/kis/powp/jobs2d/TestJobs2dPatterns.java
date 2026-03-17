@@ -43,14 +43,16 @@ public class TestJobs2dPatterns {
 	 * @param application Application context.
 	 */
 	private static void setupDrivers(Application application) {
+		DrawPanelController drawPanelController = DrawerFeature.getDrawerController();
+
 		Job2dDriver loggerDriver = new LoggerDriver();
 		DriverFeature.addDriver("Logger Driver", loggerDriver);
 		DriverFeature.getDriverManager().setCurrentDriver(loggerDriver);
 
-		Job2dDriver testDriver = new DriverAdapter();
+		Job2dDriver testDriver = new DriverAdapter(drawPanelController);
 		DriverFeature.addDriver("Buggy Simulator", testDriver);
 
-		LineDrawerAdapter lineDriver = new LineDrawerAdapter(LineFactory.getBasicLine());
+		LineDrawerAdapter lineDriver = new LineDrawerAdapter(drawPanelController, LineFactory.getBasicLine());
 		DriverFeature.addDriver("Line Driver", lineDriver);
 		setupLineSettings(application, lineDriver);
 
