@@ -3,7 +3,7 @@ package edu.kis.powp.command;
 import java.util.ArrayList;
 
 public class ComplexCommand {
-    private ArrayList<DriverCommand> commandList;
+    private final ArrayList<DriverCommand> commandList = new ArrayList<DriverCommand>();
 
     public void addCommand(DriverCommand command) {
         this.commandList.add(command);
