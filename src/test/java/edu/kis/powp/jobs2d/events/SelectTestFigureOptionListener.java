@@ -33,10 +33,10 @@ public class SelectTestFigureOptionListener implements ActionListener {
 				FiguresJane.figureScript(new AbstractDriverAdapter(driverManager.getCurrentDriver()));
 				break;
 			case 4:
-				FigureFactory.drawSquare(driverManager.getCurrentDriver(), 100);
+				FigureFactory.drawSquare(driverManager.getCurrentDriver(), 100).execute();
 				break;
 			case 5:
-				FigureFactory.drawTriangle(driverManager.getCurrentDriver(), 200);
+				FigureFactory.drawTriangle(driverManager.getCurrentDriver(), 200).execute();
 				break;
 			default:
 				break;
